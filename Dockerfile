@@ -1,4 +1,4 @@
-FROM ubuntu:impish1 
+FROM ubuntu:impish 
 MAINTAINER B.K.Jayasundera
 
 # Update base packages

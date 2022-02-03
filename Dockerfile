@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute
+FROM ubuntu:impish1 
 MAINTAINER B.K.Jayasundera
 
 # Update base packages

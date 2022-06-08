@@ -1,5 +1,5 @@
-FROM ubuntu:impish 
-MAINTAINER B.K.Jayasundera
+FROM ubuntu:jammy
+ B.K.Jayasundera
 
 # Update base packages
 RUN apt update && \
@@ -10,13 +10,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt install -y software-properties-common  
-RUN add-apt-repository ppa:iconnor/zoneminder-proposed && \
+RUN add-apt-repository ppa:iconnor/zoneminder-1.36 && \
     apt update && \
-    apt -y install gnupg msmtp tzdata supervisor zoneminder && \ 
+    apt -y install mariadb-server gnupg msmtp tzdata supervisor zoneminder && \ 
     rm -rf /var/lib/apt/lists/* && \ 
     apt -y autoremove && \
-    rm /etc/mysql/my.cnf && \
-    cp /etc/mysql/mysql.conf.d/mysqld.cnf  /etc/mysql/my.cnf && \
     service mysql restart
 
 
@@ -45,4 +43,3 @@ RUN chmod 777 /usr/bin/updatemysql.sh
 RUN chmod 777 /usr/bin/startzm.sh
 RUN chmod 777 /usr/bin/firstrun.sh
 CMD ["/usr/bin/supervisord"]
-
